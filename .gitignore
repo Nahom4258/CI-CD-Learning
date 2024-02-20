@@ -1,0 +1,49 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+.vscode/
+
+# pytest cache
+.pytest_cache/
+
+# IDE files
+.idea/
+.vscode/
+
+# Log files
+*.log
+
+# Compiled Python files
+*.pyc
+
+# Environment configuration
+.env
+
+# Package metadata
+*.egg-info/
+dist/
+build/
+
+# macOS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+
+# Windows metadata files
+Desktop.ini
+
+# Compiled C extension files
+*.so
+
+# Caches and lock files for poetry
+.poetry/
+*.lock
