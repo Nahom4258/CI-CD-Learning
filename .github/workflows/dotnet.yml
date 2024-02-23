@@ -28,8 +28,7 @@ jobs:
       - name: Check list files/folders
         run: ls
       - name: Restore dependencies
-        working-directory: DOTNET
-        run: dotnet restore
+        run: ls && dotnet restore ./DOTNET
       - name: Build
         working-directory: DOTNET
         run: dotnet build --no-restore
