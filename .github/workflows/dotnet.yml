@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - 'DOTNET/**' # Run the workflow when changes are pushed to files within the vertex_backend directory
+      - 'DOTNET/**' # Run the workflow when changes are pushed to files within the DOTNET directory
   pull_request:
     branches:
       - main
     paths:
-      - 'DOTNET/**' # Run the workflow when changes are made in pull requests targeting files within the vertex_backend directory
+      - 'DOTNET/**' # Run the workflow when changes are made in pull requests targeting files within the DOTNET directory
 
 jobs:
   build:
@@ -18,16 +18,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          path: 'vertex_backend' # Checkout the repository in the vertex_backend directory
+          path: 'DOTNET' # Checkout the repository in the DOTNET directory
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.x
       - name: Check pwd
         run: pwd
+      - name: Check list files/folders
+        run: ls
       - name: Restore dependencies
-        working-directory: DOTNET # Set the working directory to vertex_backend
+        working-directory: DOTNET
         run: dotnet restore
       - name: Build
-        working-directory: DOTNET # Set the working directory to vertex_backend
+        working-directory: DOTNET
         run: dotnet build --no-restore
