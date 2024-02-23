@@ -26,9 +26,10 @@ jobs:
       - name: Check pwd
         run: pwd
       - name: Check list files/folders
-        run: ls
+        working-directory: DOTNET
+        run: ls -la && pwd
       - name: Restore dependencies
-        run: ls && && cd DOTNET && ls && dotnet restore
+        run: ls && cd DOTNET && ls && dotnet restore
       - name: Build
         working-directory: DOTNET
         run: dotnet build --no-restore
