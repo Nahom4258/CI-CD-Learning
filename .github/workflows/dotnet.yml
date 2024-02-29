@@ -1,35 +1,31 @@
-name: .NET Build
+name: DotnetCI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
     paths:
-      - 'DOTNET/**' # Run the workflow when changes are pushed to files within the DOTNET directory
+      - 'DOTNET/'
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
     paths:
-      - 'DOTNET/**' # Run the workflow when changes are made in pull requests targeting files within the DOTNET directory
+      - 'DOTNET/'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
-        with:
-          path: 'DOTNET' # Checkout the repository in the DOTNET directory
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 7.0.x
-      - name: Check pwd
-        run: pwd
-      - name: Check list files/folders
-        working-directory: DOTNET
-        run: ls -la && pwd
+          dotnet-version: 8.0.x
       - name: Restore dependencies
-        run: ls &&  dotnet restore ./DOTNET
+        working-directory: DOTNET
+        run: dotnet restore
       - name: Build
         working-directory: DOTNET
         run: dotnet build --no-restore
+      - name: Test
+        working-directory: DOTNET
+        run: dotnet test --no-build --verbosity normal
